@@ -1,0 +1,20 @@
+.picArea {
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pic {
+    height: 240px;
+    width: 240px;
+    border-radius: 50%;
+    background-color: #e5e6e7;
+}
+
+.defaultText {
+    line-height: 240px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}

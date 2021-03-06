@@ -1,0 +1,47 @@
+.scriptsArea {}
+
+.tag-container {
+    display: flex;
+    padding-top: 9px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tag-container>div {
+    margin-left: 9px;
+    margin-bottom: 9px;
+}
+
+.selectedBox {
+    max-height: 80px;
+    overflow: auto;
+    width: 95%;
+    margin: 2px 6px;
+    padding: 3px;
+    border: 1px solid #e3e4e5;
+    border-radius: 10px;
+    min-height: 5px;
+    display: inline-block;
+}
+
+.historyBox {
+    height: 15%;
+}
+
+.script-item {
+    float: left;
+    height: 30px;
+    padding: 2px 6px;
+    margin: 2px 5px;
+    border-radius: 15%;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgb(135, 199, 119);
+}
+
+.addScriptBtn {
+    float: left;
+    position: absolute;
+    margin-top: 3px;
+
+}
