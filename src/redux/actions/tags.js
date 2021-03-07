@@ -1,0 +1,1 @@
+export const tags=data=>({type:'TAGS',data})

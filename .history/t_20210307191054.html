@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let domNode = {
+            tagName: 'ul',
+            props: {
+                class: 'list'
+            },
+            children: [{
+                tagName: 'li',
+                children: ['toutiao']
+            }, {
+                tagName: 'li',
+                children: ['douyin']
+            }]
+        };
+        // 构建一个 render 函数，将 domNode 对象渲染为 以下 dom
+        // <ul class = "list" >
+        //     <li > toutiao < /li>
+        //     <li > douyin < /li>
+        // </ul>
+        function render(vdom) {
+            let element = document.createElement(vdom.tagName)
+            // if (typeof vdom.props === 'object' && vdom.props !== null) {
+            //     for (key in vdom.props) {
+            //         for (key in vdom.props) {
+            //             vla = vdom.props[key]
+            //             element.setAttribute(key, vla)
+            //         }
+            //     }
+            // }
+            // if (vdom.children instanceof Array) {
+            //     vdom.children.forEach((item) => {
+            //         element.appendChild(render(item))
+            //     })
+            // }
+            // return element
+        }
+        const app = document.getElementById('app')
+        app.appendChild(render(domNode))
+    </script>
+</head>
+<div id='app'></div>
+
+<body>
+</body>
+
+</html>
