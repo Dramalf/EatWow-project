@@ -28,6 +28,7 @@ const AddMealBtn = (props) => {
             const mealInfo = {
                 username: 'mlf', userid: '916', mealName, picUrl, tags, description
             }
+            setVisible(false)
             Axios.post('http://localhost:5053/addmeal', qs.stringify(mealInfo))
                 .then((res) => {
                     Toast.success('好耶，上传成功', 1)

@@ -2,23 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Tag } from 'antd-mobile';
 import { connect } from 'react-redux'
 import { Axios } from '../../axios'
-import qs from 'qs'
 import { tags } from '../../redux/actions/tags'
 import './index.css'
 const ScriptsArea = (props) => {
     const [selectedTags, setselectedTags] = useState([]);
-    const [scripts, setscripts] = useState(['1', '2'])
-    function onChange(tagname) {
+    function onChange(tag) {
         return (selected) => {
             if (selected) {
-                setselectedTags([...selectedTags, tagname])
+                setselectedTags([...selectedTags, tag.name])
             }
             else {
-                setselectedTags(selectedTags.filter((name) => name !== tagname))
+                setselectedTags(selectedTags.filter((name) => name !== tag.name))
             }
         }
     }
-    useEffect(() => { setscripts(props.allTags) }, [props.allTags])
+    useEffect(() => {
+        Axios.get('http://localhost:5053/tags')
+            .then((alltags) => {
+                setscripts(alltags)
+            })
+    }, [scripts])
     useEffect(() => {
         props.tags(selectedTags)
     }, [selectedTags])
@@ -44,14 +47,15 @@ const ScriptsArea = (props) => {
     //         name: '东边啊实'
     //     }
     // ]
+    const [scripts, setscripts] = useState(sarr)
 
     return (
         <div className='scriptsArea'>
             <div className="tag-container selectedBox">
                 {
-                    scripts.map((script) => {
+                    scripts.map((scriptObj) => {
                         return (
-                            <Tag key={script} onChange={onChange(script)}>{script}</Tag>
+                            <Tag key={scriptObj.name} onChange={onChange(scriptObj)}>{scriptObj.name}</Tag>
                         )
                     })
                 }

@@ -2,8 +2,6 @@ import { Popover, NavBar, Icon } from 'antd-mobile';
 import React from 'react'
 import { Axios } from '../../axios'
 import qs from 'qs'
-import { connect } from 'react-redux'
-import { allTags } from '../../redux/actions/allTags'
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
@@ -16,7 +14,7 @@ class MyNavBar extends React.Component {
         const userInfo = {
             username: 'mlf', userid: '916'
         }
-        Axios.post('http://localhost:5053/signin', qs.stringify(userInfo))
+        Axios.post('http://localhost:5053/login', qs.stringify(userInfo))
             .then(res => res.data)
             .then(tags => {
                 this.props.allTags(tags)

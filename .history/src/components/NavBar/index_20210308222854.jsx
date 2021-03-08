@@ -16,7 +16,7 @@ class MyNavBar extends React.Component {
         const userInfo = {
             username: 'mlf', userid: '916'
         }
-        Axios.post('http://localhost:5053/signin', qs.stringify(userInfo))
+        Axios.post('http://localhost:5053/login', qs.stringify(userInfo))
             .then(res => res.data)
             .then(tags => {
                 this.props.allTags(tags)

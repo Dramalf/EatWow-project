@@ -63,7 +63,7 @@ const AddMealBtn = (props) => {
                 visible={visible}
                 onClose={onClose}
                 animationType="slide-up"
-                afterClose={() => { }}
+                afterClose
             >
                 <List renderHeader={() => <div>添加菜品</div>} className="popup-list ">
                     <List.Item>

@@ -18,7 +18,14 @@ const ScriptsArea = (props) => {
             }
         }
     }
-    useEffect(() => { setscripts(props.allTags) }, [props.allTags])
+    useEffect(() => {
+        const ajaxData = { username: 'mlf', userid: '916', tags }
+        Axios.post('http://127.0.0.1:5053/tags', qs.stringify(ajaxData))
+            .then((res) => { console.log(res.alltags) })
+            .then(alltags => {
+                console.log("$$", alltags)
+            })
+    })
     useEffect(() => {
         props.tags(selectedTags)
     }, [selectedTags])

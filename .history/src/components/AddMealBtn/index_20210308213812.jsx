@@ -6,7 +6,7 @@ import './index.css'
 import { connect } from 'react-redux'
 import { allTags } from '../../redux/actions/allTags'
 import AddMealPic from '../AddMealPic'
-const AddMealBtn = (props) => {
+const AddMealBtn = () => {
     const [visible, setVisible] = useState(false)
     const [picUrl, setPicUrl] = useState('')
     const inputName = useRef(null)
@@ -28,16 +28,13 @@ const AddMealBtn = (props) => {
             const mealInfo = {
                 username: 'mlf', userid: '916', mealName, picUrl, tags, description
             }
+            console.log("上传", mealInfo)
             Axios.post('http://localhost:5053/addmeal', qs.stringify(mealInfo))
                 .then((res) => {
                     Toast.success('好耶，上传成功', 1)
                     setVisible(false)
-                    //  console.log("***", res)
+                    console.log("***", res)
                     return res.data
-                })
-                .then((updateTags) => {
-                    console.log(updateTags)
-                    props.allTags(updateTags)
                 })
         }
         else {
@@ -63,7 +60,6 @@ const AddMealBtn = (props) => {
                 visible={visible}
                 onClose={onClose}
                 animationType="slide-up"
-                afterClose={() => { }}
             >
                 <List renderHeader={() => <div>添加菜品</div>} className="popup-list ">
                     <List.Item>

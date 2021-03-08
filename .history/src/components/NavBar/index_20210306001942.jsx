@@ -1,28 +1,15 @@
 import { Popover, NavBar, Icon } from 'antd-mobile';
 import React from 'react'
-import { Axios } from '../../axios'
-import qs from 'qs'
-import { connect } from 'react-redux'
-import { allTags } from '../../redux/actions/allTags'
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
-class MyNavBar extends React.Component {
+export default class MyNavBar extends React.Component {
     state = {
         visible: true,
         selected: '',
     };
     onSelect = (opt) => {
-        const userInfo = {
-            username: 'mlf', userid: '916'
-        }
-        Axios.post('http://localhost:5053/signin', qs.stringify(userInfo))
-            .then(res => res.data)
-            .then(tags => {
-                this.props.allTags(tags)
-            })
-        console.log(opt.props.value);
-
+        // console.log(opt.props.value);
         this.setState({
             visible: false,
             selected: opt.props.value,
@@ -43,8 +30,11 @@ class MyNavBar extends React.Component {
                         overlayStyle={{ color: 'currentColor' }}
                         visible={this.state.visible}
                         overlay={[
-                            (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">登录</Item>),
-                            ,
+                            (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
+                            (<Item key="5" value="special" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
+                            (<Item key="6" value="button ct" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
+                                <span style={{ marginRight: 5 }}>Help</span>
+                            </Item>),
                         ]}
                         align={{
                             overflow: { adjustY: 0, adjustX: 0 },
@@ -71,7 +61,3 @@ class MyNavBar extends React.Component {
         </div>);
     }
 }
-export default connect(
-    state => state,
-    { allTags }
-)(MyNavBar)

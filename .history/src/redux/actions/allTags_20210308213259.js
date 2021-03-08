@@ -1,0 +1,1 @@
+export const allTags=data=>({type:'ALLTAGS',data})

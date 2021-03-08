@@ -10,10 +10,8 @@ function App() {
       <MyNavBar />
       <ScriptsArea/>
       <PicArea />
-      <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-        <StartBtn/>
-        <AddMealBtn />
-      </div>
+      <StartBtn/>
+      <AddMealBtn />
     </div>
   );
 }

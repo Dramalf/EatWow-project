@@ -56,7 +56,7 @@ const AddMealBtn = (props) => {
 
     return (
         <div >
-            <Button className='btn' type="primary" size="large" onClick={showModal}>添加</Button>
+            <Button className='btn btn-below' type="primary" size="large" onClick={showModal}>添加</Button>
 
             <Modal
                 popup

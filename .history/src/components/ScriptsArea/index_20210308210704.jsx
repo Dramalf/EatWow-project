@@ -18,34 +18,41 @@ const ScriptsArea = (props) => {
             }
         }
     }
-    useEffect(() => { setscripts(props.allTags) }, [props.allTags])
     useEffect(() => {
+        const ajaxData = { username: 'mlf', userid: '916', tags }
+        Axios.post('http://127.0.0.1:5053/tags', qs.stringify(ajaxData))
+            .then((res) => res.alltags)
+            .then(alltags => {
+                console.log("$$", alltags)
+            })
+    }
+        useEffect(() => {
         props.tags(selectedTags)
     }, [selectedTags])
-    // const sarr = [
-    //     {
-    //         id: 1,
-    //         name: '清淡'
-    //     },
-    //     {
-    //         id: 2,
-    //         name: '东边'
-    //     },
-    //     {
-    //         id: 3,
-    //         name: '水果'
-    //     },
-    //     {
-    //         id: 4,
-    //         name: '西边'
-    //     },
-    //     {
-    //         id: 5,
-    //         name: '东边啊实'
-    //     }
-    // ]
+        // const sarr = [
+        //     {
+        //         id: 1,
+        //         name: '清淡'
+        //     },
+        //     {
+        //         id: 2,
+        //         name: '东边'
+        //     },
+        //     {
+        //         id: 3,
+        //         name: '水果'
+        //     },
+        //     {
+        //         id: 4,
+        //         name: '西边'
+        //     },
+        //     {
+        //         id: 5,
+        //         name: '东边啊实'
+        //     }
+        // ]
 
-    return (
+        return (
         <div className='scriptsArea'>
             <div className="tag-container selectedBox">
                 {

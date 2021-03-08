@@ -3,10 +3,8 @@ import { Modal, List, Button, InputItem, Toast } from 'antd-mobile';
 import { Axios } from '../../axios'
 import qs from 'qs'
 import './index.css'
-import { connect } from 'react-redux'
-import { allTags } from '../../redux/actions/allTags'
 import AddMealPic from '../AddMealPic'
-const AddMealBtn = (props) => {
+const AddMealBtn = () => {
     const [visible, setVisible] = useState(false)
     const [picUrl, setPicUrl] = useState('')
     const inputName = useRef(null)
@@ -28,17 +26,10 @@ const AddMealBtn = (props) => {
             const mealInfo = {
                 username: 'mlf', userid: '916', mealName, picUrl, tags, description
             }
+            console.log("上传", mealInfo)
             Axios.post('http://localhost:5053/addmeal', qs.stringify(mealInfo))
-                .then((res) => {
-                    Toast.success('好耶，上传成功', 1)
-                    setVisible(false)
-                    //  console.log("***", res)
-                    return res.data
-                })
-                .then((updateTags) => {
-                    console.log(updateTags)
-                    props.allTags(updateTags)
-                })
+            Toast.success('好耶，上传成功', 1);
+            setVisible(false)
         }
         else {
             Modal.alert('未填写名称', '客官，终止上传吗？', [
@@ -63,7 +54,10 @@ const AddMealBtn = (props) => {
                 visible={visible}
                 onClose={onClose}
                 animationType="slide-up"
-                afterClose={() => { }}
+                afterClose={() => {
+                    console.log()
+                    // Toast.success('上传成功', 1);
+                }}
             >
                 <List renderHeader={() => <div>添加菜品</div>} className="popup-list ">
                     <List.Item>
@@ -99,7 +93,4 @@ const AddMealBtn = (props) => {
     );
 }
 
-export default connect(
-    state => state,
-    { allTags }
-)(AddMealBtn)
+export default AddMealBtn;

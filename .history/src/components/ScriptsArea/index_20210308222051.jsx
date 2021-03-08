@@ -21,7 +21,7 @@ const ScriptsArea = (props) => {
     useEffect(() => { setscripts(props.allTags) }, [props.allTags])
     useEffect(() => {
         props.tags(selectedTags)
-    }, [selectedTags])
+    }, [])
     // const sarr = [
     //     {
     //         id: 1,

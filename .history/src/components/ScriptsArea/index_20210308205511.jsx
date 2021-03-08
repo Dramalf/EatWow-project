@@ -7,7 +7,7 @@ import { tags } from '../../redux/actions/tags'
 import './index.css'
 const ScriptsArea = (props) => {
     const [selectedTags, setselectedTags] = useState([]);
-    const [scripts, setscripts] = useState(['1', '2'])
+    const [scripts, setscripts] = useState([])
     function onChange(tagname) {
         return (selected) => {
             if (selected) {
@@ -18,7 +18,19 @@ const ScriptsArea = (props) => {
             }
         }
     }
-    useEffect(() => { setscripts(props.allTags) }, [props.allTags])
+    useEffect(() => {
+        Axios.get('http://localhost:5053/tags', qs.stringify({
+            params: {
+                username: 'mlf',
+                userid: '916'
+            }
+        })
+        )
+            .then((alltags) => {
+                console.log("s&&&", alltags)
+                setscripts(alltags)
+            })
+    })
     useEffect(() => {
         props.tags(selectedTags)
     }, [selectedTags])

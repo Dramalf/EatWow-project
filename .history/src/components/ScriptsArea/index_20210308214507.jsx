@@ -18,7 +18,7 @@ const ScriptsArea = (props) => {
             }
         }
     }
-    useEffect(() => { setscripts(props.allTags) }, [props.allTags])
+    useEffect(() => { console.log("tags", props) }, [props.allTags])
     useEffect(() => {
         props.tags(selectedTags)
     }, [selectedTags])

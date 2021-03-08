@@ -14,7 +14,7 @@ const StartBtn = (props) => {
         Axios.post('http://127.0.0.1:5053/randommeal', qs.stringify(ajaxData))
             .then(res => {
                 console.log("收到", res.data)
-                props.meal(res.data)
+                // props.meal(res.data)
             })
     }
 
