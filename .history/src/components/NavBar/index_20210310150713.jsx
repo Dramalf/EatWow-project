@@ -1,10 +1,7 @@
 import { Popover, NavBar, Icon, Modal } from 'antd-mobile';
 import React from 'react'
-import { Axios } from '../../axios'
-import qs from 'qs'
 import { connect } from 'react-redux'
 import { allTags } from '../../redux/actions/allTags'
-import { sendId } from '../../redux/actions/userid'
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
@@ -13,30 +10,20 @@ class MyNavBar extends React.Component {
         visible: true,
         selected: '',
         username: '',
-        userid: ''
+        userid: '',
+        loginMsg: {}
     };
     onSelect = (opt) => {
+        const userInfo = {
+            username: 'mlf', userid: '916'
+        }
         Modal.prompt(
             '开门！迎客！',
             '客官！您来了！',
-            (username, password) => {
-                if (username && password) {
-                    console.log(`login: ${username}, password: ${password}`)
-                    let loginMsg = { username, password }
-                    console.log(loginMsg)
-                    Axios.post('http://127.0.0.1:5053/signin', qs.stringify(loginMsg))
-                        .then(res => res.data)
-                        .then((userData) => {
-                            const { sendTags, userid, msg } = userData
-                            Modal.alert('嘟嘟', msg)
-                            this.props.allTags(sendTags)
-                            this.props.sendId(userid)
-                        })
-                }
-                else {
-                    Modal.alert('哎呀', '信息填写不完整啊，小二找不到您呢')
-                }
-
+            (login, password) => {
+                this.setState({ loginMsg: { login, password } })
+                    .then(() => console.log(this.state))
+                console.log(`login: ${login}, password: ${password}`)
             },
             'login-password',
             null,
@@ -100,8 +87,5 @@ class MyNavBar extends React.Component {
 }
 export default connect(
     state => state,
-    {
-        allTags,
-        sendId
-    }
+    { allTags }
 )(MyNavBar)

@@ -36,7 +36,7 @@ const AddMealBtn = (props) => {
             Axios.post('http://localhost:5053/addmeal', qs.stringify(mealInfo))
                 .then((res) => {
                     Toast.success('好耶，上传成功', 1)
-                    setVisible(false)
+
                     //  console.log("***", res)
                     return res.data
                 })

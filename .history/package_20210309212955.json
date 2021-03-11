@@ -11,7 +11,6 @@
     "axios": "^0.21.1",
     "http-proxy-middleware": "^1.0.6",
     "qs": "^6.9.6",
-    "rc-form": "^2.4.12",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

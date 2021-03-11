@@ -7,14 +7,11 @@ import qs from 'qs'
 import './index.css'
 const StartBtn = (props) => {
     const [tags, settags] = useState([]);
-    const [userid, setuserid] = useState('');
     const startChoose = () => {
-        // console.log("&*&", props)
 
-        const ajaxData = { userid, tags }
-        console.log("*(", userid)
+        const ajaxData = { username: 'mlf', userid: '916', tags }
         console.log("发送", ajaxData)
-        Axios.post('http://localhost:5053/randommeal', qs.stringify(ajaxData))
+        Axios.post('http://116.62.128.248:5053/randommeal', qs.stringify(ajaxData))
             .then(res => {
                 console.log("收到", res.data)
                 props.meal(res.data)
@@ -22,7 +19,6 @@ const StartBtn = (props) => {
     }
 
     useEffect(() => {
-        setuserid(props.sendId)
         settags(props.tags)
     })
 

@@ -7,12 +7,9 @@ import qs from 'qs'
 import './index.css'
 const StartBtn = (props) => {
     const [tags, settags] = useState([]);
-    const [userid, setuserid] = useState('');
     const startChoose = () => {
-        // console.log("&*&", props)
-
-        const ajaxData = { userid, tags }
-        console.log("*(", userid)
+        console.log("&*&", props)
+        const ajaxData = { username: 'mlf', userid: '916', tags }
         console.log("发送", ajaxData)
         Axios.post('http://localhost:5053/randommeal', qs.stringify(ajaxData))
             .then(res => {
@@ -22,7 +19,6 @@ const StartBtn = (props) => {
     }
 
     useEffect(() => {
-        setuserid(props.sendId)
         settags(props.tags)
     })
 

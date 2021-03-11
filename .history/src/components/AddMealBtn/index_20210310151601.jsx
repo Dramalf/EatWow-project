@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Modal, List, Button, InputItem, Toast } from 'antd-mobile';
 import { Axios } from '../../axios'
 import qs from 'qs'
@@ -9,16 +9,12 @@ import AddMealPic from '../AddMealPic'
 const AddMealBtn = (props) => {
     const [visible, setVisible] = useState(false)
     const [picUrl, setPicUrl] = useState('')
-    const [userid, setuserid] = useState('');
     const inputName = useRef(null)
     const inputTags = useRef(null)
     const inputDescription = useRef(null)
     const getUrl = (url) => {
         setPicUrl(url)
     }
-    useEffect(() => {
-        setuserid(props.sendId)
-    })
     const showModal = (e) => {
         e.preventDefault(); // 修复 Android 上点击穿透
 
@@ -29,14 +25,13 @@ const AddMealBtn = (props) => {
         if (mealName) {
             const tags = inputTags.current.state.value.split(' ')
             const description = inputDescription.current.state.value
-            console.log(userid)
             const mealInfo = {
-                userid, mealName, picUrl, tags, description
+                username: 'mlf', userid: '916', mealName, picUrl, tags, description
             }
             Axios.post('http://localhost:5053/addmeal', qs.stringify(mealInfo))
                 .then((res) => {
                     Toast.success('好耶，上传成功', 1)
-                    setVisible(false)
+
                     //  console.log("***", res)
                     return res.data
                 })

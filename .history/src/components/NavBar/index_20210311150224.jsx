@@ -4,7 +4,6 @@ import { Axios } from '../../axios'
 import qs from 'qs'
 import { connect } from 'react-redux'
 import { allTags } from '../../redux/actions/allTags'
-import { sendId } from '../../redux/actions/userid'
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
@@ -25,12 +24,8 @@ class MyNavBar extends React.Component {
                     let loginMsg = { username, password }
                     console.log(loginMsg)
                     Axios.post('http://127.0.0.1:5053/signin', qs.stringify(loginMsg))
-                        .then(res => res.data)
-                        .then((userData) => {
-                            const { sendTags, userid, msg } = userData
-                            Modal.alert('嘟嘟', msg)
-                            this.props.allTags(sendTags)
-                            this.props.sendId(userid)
+                        .then(res => {
+                            console.log("##", res)
                         })
                 }
                 else {
@@ -100,8 +95,5 @@ class MyNavBar extends React.Component {
 }
 export default connect(
     state => state,
-    {
-        allTags,
-        sendId
-    }
+    { allTags }
 )(MyNavBar)

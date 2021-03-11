@@ -1,0 +1,1 @@
+export const userid=data=>({type:'ID',data})

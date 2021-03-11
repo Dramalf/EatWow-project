@@ -29,8 +29,7 @@ class MyNavBar extends React.Component {
                         .then((userData) => {
                             const { sendTags, userid, msg } = userData
                             Modal.alert('嘟嘟', msg)
-                            this.props.allTags(sendTags)
-                            this.props.sendId(userid)
+                            props.allTags(sendTags)
                         })
                 }
                 else {
@@ -100,8 +99,5 @@ class MyNavBar extends React.Component {
 }
 export default connect(
     state => state,
-    {
-        allTags,
-        sendId
-    }
+    { allTags }
 )(MyNavBar)
