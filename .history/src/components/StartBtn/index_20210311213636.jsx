@@ -15,10 +15,11 @@ const StartBtn = (props) => {
         console.log("*(", userid)
         console.log("发送", ajaxData)
         Axios.post('http://localhost:5053/randommeal', qs.stringify(ajaxData))
-            .then(res => JSON.parse(res.data))
+            .then(res => JSON.parse(res))
             .then(res => {
-                console.log("收到", res)
-                props.meal(res)
+
+                console.log("收到", res.data)
+                props.meal(res.data)
             })
     }
 

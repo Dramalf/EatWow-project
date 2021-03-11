@@ -17,8 +17,8 @@ const StartBtn = (props) => {
         Axios.post('http://localhost:5053/randommeal', qs.stringify(ajaxData))
             .then(res => JSON.parse(res.data))
             .then(res => {
-                console.log("收到", res)
-                props.meal(res)
+                console.log("收到", res.data)
+                props.meal(res.data)
             })
     }
 
