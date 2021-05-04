@@ -1,0 +1,14 @@
+.addMealBox {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    border-radius: 10%;
+    background-color: #e5e6e7;
+}
+
+.imgpick {
+    /* width: 50%; */
+}
